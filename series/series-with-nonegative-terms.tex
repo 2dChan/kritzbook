@@ -1,0 +1,267 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}
+
+\usepackage{subfiles}
+
+\pgfplotsset{compat=1.18}
+
+\theoremstyle{plain}
+
+\textwidth=170mm
+\textheight=250mm
+\hoffset=-20mm
+\voffset=-30mm
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+\sloppy
+
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Proposition}{Утверждение}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{Corollary}{Следствие}
+\newtheorem{Definition}{Определение}
+\newtheorem{Problem}{Задача}
+\newtheorem{Example}{Пример}
+\newtheorem{Note}{Замечание}
+\renewcommand{\proofname}{Доказательство}
+
+\newcommand{\llim}{\lim\limits}
+\newcommand{\lsum}{\sum\limits}
+
+\DeclareMathOperator*{\lowlim}{\underline{lim}}
+\DeclareMathOperator*{\uplim}{\overline{lim}}
+
+\newlength{\lenun}
+\newlength{\lendu}
+\settowidth{\lenun}{$W$}
+\settoheight{\lendu}{$W$}
+\def\Wo{\makebox{\parbox[c][\lendu][b]{\lenun}{$\stackrel{o}{W}$}}}
+
+\makeatletter
+\renewcommand{\@listI}{%
+\leftmargin=25pt \rightmargin=0pt \labelsep=5pt \labelwidth=20pt \itemindent=0pt
+\listparindent=0pt \topsep=8pt plus 2pt minus 4pt \partopsep=2pt plus 1pt minus
+1pt \parsep=0pt plus 1pt \itemsep=\parsep}
+\makeatother
+
+\begin{document}
+	\section{Ряды с неотр. слагаемыми}
+	
+	\begin{minipage}{0.35\textwidth}
+	\begin{equation} \tag{3}
+		\sum_{n=1}^{\infty} p_n, \qquad p_n \geq 0
+	\end{equation}
+	\end{minipage}
+	\hfill
+	\begin{minipage}{0.55\textwidth}
+	\begin{equation} \nonumber
+	\begin{split}
+		& S_n = p_1 + p_2 + ... + p_n \\
+		& S_{n+1} = S_n + p_{n+1} > S_n \\
+		& \Rightarrow \{S_n\} \ \text{не убывает}
+	\end{split}
+	\end{equation}
+	\end{minipage}
+
+	\begin{Theorem}
+		\label{th:lim_of_S_n}
+		Числовой ряд (3) сходится \(\Leftrightarrow\) посл-ть его числовых сумм 
+		ограничена(ограничена сверху).
+	\end{Theorem}
+
+	\subsection{Признаки сравнения}
+	\begin{Theorem}
+		Пусть \(\lsum_{k=1}^{\infty} p_k - \text{миноранта}, 
+		\lsum_{k=1}^{\infty} p'_k - \text{мажоранта}\), где \(p_k, p'_k \geq 0\).\\
+		Пусть кроме того выполнено: \(p_k \leq c_0 p_k'\), где \(c_0 > 0\). Тогда:
+		\begin{enumerate}
+			\item Если \(\lsum_{k=1}^{\infty} p'_k\) сходится, то \(\lsum_{k=1}^{\infty} p_k\) сходится.
+			\item Если \(\lsum_{k=1}^{\infty} p'_k\) расходится, то \(\lsum_{k=1}^{\infty} p_k\) расходится.
+		\end{enumerate}
+	\end{Theorem}
+	\begin{proof} \
+		\begin{enumerate}
+			\item Пусть \(\lsum_{k=1}^{\infty} p'_k\) сходится. Тогда по 
+				теореме~\ref{th:lim_of_S_n} \(\{S'_n\}\) ограничена сверху 
+				и \(S_n \leq c_0 S'_n \Rightarrow \{S_n\}\) ограничена сверху 
+				\(\Rightarrow\) ЧТД.
+			\item Пусть утверждение неверно. Тогда по пункту 1 первый ряд тоже
+				должен быть сходящимся - противоречие.
+		\end{enumerate}
+	\end{proof}
+
+	\begin{Note}
+		% TODO:
+		В разработке.
+	\end{Note}
+
+	\begin{Theorem}[Признак сравнения в предельной форме] \ \\
+		Пусть \(\lsum_{k=1}^{\infty} p_k\), \(\lsum_{k=1}^{\infty} p'_k\), \(p_k 
+		\geq 0, p'_k \geq 0,\ \exists \llim_{k\to\infty} \frac{p_k}{p'_k} 
+		\equiv L > 0 \Rightarrow \) они сходятся и расходятся одновременно.
+	\end{Theorem}
+	\begin{proof}
+		% TODO:
+		В разработке.
+	\end{proof}
+
+	\begin{Theorem}[ещё один признак сравнения]
+		% TODO:
+		В разработке.
+	\end{Theorem}
+
+	\subsection{Признаки Даламбера и Коши}
+	\begin{Theorem}
+		[признак Коши]\
+
+		\begin{enumerate}
+			\item Если $\sqrt[k]{p_{k}}< q < 1\ \forall k$, то ряд\  $\sum\limits_{k =
+				1}^{\infty}p_{k},\ p_{k} \geqslant 0$ сходится.\\
+				Если $\sqrt[k]{p_{k}}\geqslant 1$, то ряд расходится.
+
+			\item Пусть $\exists \lim\limits_{k\to\infty}\sqrt[k]{p_{k}}\equiv L$.
+				Если $L < 1$, то ряд сходится. Если $L > 1$, то расходится.
+		\end{enumerate}
+	\end{Theorem}
+	\begin{proof}
+		\
+
+		\begin{enumerate}
+			\item $\sqrt[k]{p_{k}}\leqslant q \Rightarrow p_{k} \geqslant q^{k},\ q < 1$
+				и $\sum\limits_{k=1}^{\infty}q^{k}$ сходится $\Rightarrow$ сходимость ряда
+				по теореме 3.\\
+				$\sqrt[k]{p_{k}}\geqslant 1 \Rightarrow$ нарушенно необходимое условие
+				$\Rightarrow$ ряд расходится.
+
+			\item $\forall \varepsilon > 0 \ \exists k_{0} : \forall k > k_{0} \ \
+ L-\varepsilon
+				<\sqrt[k]{p_{k}}<L+\varepsilon$. \\
+				Если $L < 1$, то возьмем $\varepsilon$ так, чтобы $L + \varepsilon < 1$,
+				тогда $\sqrt[k]{p_{k}}< L + \varepsilon < 1$. Задача сведена к 1 пункту
+				$\Rightarrow$ ряд сходится.\\
+				Если $L > 1$, то возьмем $\varepsilon$ так чтобы $L - \varepsilon > 1$ тогда
+				$\sqrt[k]{p_{k}}> L - \varepsilon > 1 \Rightarrow$ свели задачу к 1 пункту
+				$\Rightarrow$ ряд расходится.
+		\end{enumerate}
+	\end{proof}
+	\begin{Note}
+		Если $L = 1$, то данный признак не дает однозначного ответа.
+		\begin{alignat*}
+			{2} & \sum_{k = 1}^{\infty}\frac{1}{k}- pacx & \qquad & \sum_{k = 1}^{\infty}\frac{1}{k}- cx \\
+			    & \sqrt[k]{\frac{1}{k}}\to 1             & \qquad & \sqrt[k]{\frac{1}{k ^ 2}}\to 1
+		\end{alignat*}
+	\end{Note}
+	\begin{Note}
+		Если $L = \infty$, то ряд (3) расходится.
+		\[
+			\forall \varepsilon > 0 \ \exists k_{0}: \ \forall k > k_{0} \ \sqrt[k]{p_{k}}
+			\geqslant \varepsilon
+		\]
+	\end{Note}
+	\begin{Note}
+		Утверждение српаведливо и в случае, если
+		$L = \uplim\limits_{k\to\infty}\sqrt[k]{p}_{k}$
+		%TODO: Дописать
+	\end{Note}
+
+	\begin{Theorem}
+		[Признак Даламбера $\frac{p_{k + 1}}{p_{k}}$]\
+
+		\begin{enumerate}
+			\item Если $\frac{p_{k + 1}}{p_{k}}< 1$, то (3) сходится.\\
+				Если $\frac{p_{k + 1}}{p_{k}}> 1$, то (3) расходится.
+
+			\item Пусть $\exists \lim\limits_{k\to\infty}\frac{p_{k+1}}{p_{k}}\equiv L$.
+				Если $L < 1$, то (3) сходится. Если $L > 1$, то (3) расходится.
+		\end{enumerate}
+	\end{Theorem}
+	\begin{proof}
+		\
+
+		\begin{enumerate}
+			\item $\frac{p_{k+1}}{p_{k}}= q : \frac{q^{k+1}}{q^{k}}, \sum\limits_{k =
+				1}^{\infty}q^{k}$ сходится, если $q < 1 \Rightarrow$ по теореме 3
+				$\sum\limits_{k = 1}^{\infty}p_{k}$ сходится.\\
+				$\frac{p_{k+1}}{p_{k}}\geqslant 1$, то $p_{k}+1 \geqslant p_{k} \Rightarrow
+				\{p_{k}\}$ возрастает $\Rightarrow$ нарушено необходимое условие сходимости
+				$\Rightarrow$ расходится.
+
+			\item $L > 1,\ L - \varepsilon < \frac{p_{k+1}}{p_{k}}< L + \varepsilon, \
+				\forall k \geqslant k_{0}$ Выберем $\varepsilon > 0 \ \  L - \varepsilon
+				> 1 \Rightarrow$ (3) расходится.\\
+				$L < 1$, выберем $L + \varepsilon < 1 \Rightarrow$ (3) сходится.
+		\end{enumerate}
+	\end{proof}
+	\begin{Note}
+		$L = 1$ - аналогично предыдущему.
+	\end{Note}
+	\begin{Note}
+		$L = \infty$ - аналогично предыдущему.
+	\end{Note}
+	\begin{Note}
+		%TODO: Дописать
+	\end{Note}
+	\begin{Lemma}
+		Если $\lim\limits_{k\to\infty}b_{k} = b$, то
+		$\lim\limits_{k\to\infty}\frac{b_{1} + b_{2} + ... + b_{k}}{k}= b$
+	\end{Lemma}
+	\begin{proof}
+		\begin{multline}
+			\sum_{n = 1}^{k}\frac{b_{n}}{k}- b = \frac{(b_{1} - b) + (b_{2} - b) + ...
+			+ (b_{k} - b)}{k}=\bigg|\ \forall \varepsilon > 0 \ \exists k_{0}: \forall
+			k > k_{0} \ |b_{k} - b|<\varepsilon \ \bigg|= \\
+			= \frac{(b_{1} - b) + (b_{2} - b) + ... + (b_{k_0-1}- b)}{k}+ \frac{(b_{k_0}-
+			b) + ... + (b_{k} - b)}{k}\Rightarrow \\
+			\Rightarrow \left|\frac{b_{1} + b_{2} + ... + b_{k}}{k}- k \right| \leqslant
+			\frac{|b_{1} - b| + ... + |b_{k_0-1}- b|}{k}+ \frac{|b_{k_0}- b| + ... + |b_{k}
+			- b|}{k}\nonumber = \\
+			=\bigg| M = sup|b_{k}-b| \bigg|= \frac{k_{0} * M}{k}+ \varepsilon
+		\end{multline}
+		выберем $k_{1} \geqslant k_{0}: \ \frac{k_{0} M}{k}< \varepsilon, \ \forall k
+		> k_{1}$
+	\end{proof}
+
+	\subsection{Интегральный признак}
+	Пусть $y = f(x), \ x \geqslant 1$. Пусть f(x) неотрицательна и монотонно не
+	возрастает.
+	\begin{Theorem}
+		Ряд $\sum\limits_{n = 1}^{\infty}f(x)$ сходится $\Leftrightarrow$ сходится $\int
+		\limits_{1}^{\infty}f(x)dx$
+	\end{Theorem}
+	\begin{proof}
+		% TODO
+		В разработке.
+		%\begin{tikzpicture}
+		%	\begin{axis}[
+		%		x=10mm,
+		%		y=20mm,
+		%		xtick={ 1, ..., 4},
+		%		xmin=0,
+		%		xmax=5,
+		%		xlabel={\tiny $x$},
+		%		axis x line=middle,
+		%		ytick={ 2 },
+		%		ymin=0,
+		%		ymax=1,
+		%		ylabel={\scriptsize $f(x)$},
+		%		axis y line=middle,
+		%		domain=0:5,
+		%	]
+		%		\addplot[thick] (x,{1/x});
+		%	\end{axis}
+		%\end{tikzpicture}
+
+		%$f(n) \geqslant f(n + 1) \forall n$
+	\end{proof}
+\end{document}

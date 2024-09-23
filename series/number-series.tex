@@ -1,0 +1,120 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}
+\graphicspath{ {../images/} }
+\pgfplotsset{compat=1.18}
+
+\theoremstyle{plain}
+
+\textwidth=170mm
+\textheight=250mm
+\hoffset=-20mm
+\voffset=-30mm
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+\sloppy
+
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Proposition}{Утверждение}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{Corollary}{Следствие}
+\newtheorem{Definition}{Определение}
+\newtheorem{Problem}{Задача}
+\newtheorem{Example}{Пример}
+\newtheorem{Note}{Замечание}
+\renewcommand{\proofname}{Доказательство}
+
+\newcommand{\llim}{\lim\limits}
+\newcommand{\lsum}{\sum\limits}
+
+\DeclareMathOperator*{\lowlim}{\underline{lim}}
+\DeclareMathOperator*{\uplim}{\overline{lim}}
+
+\newlength{\lenun}
+\newlength{\lendu}
+\settowidth{\lenun}{$W$}
+\settoheight{\lendu}{$W$}
+\def\Wo{\makebox{\parbox[c][\lendu][b]{\lenun}{$\stackrel{o}{W}$}}}
+
+\makeatletter
+\renewcommand{\@listI}{%
+\leftmargin=25pt \rightmargin=0pt \labelsep=5pt \labelwidth=20pt \itemindent=0pt
+\listparindent=0pt \topsep=8pt plus 2pt minus 4pt \partopsep=2pt plus 1pt minus
+1pt \parsep=0pt plus 1pt \itemsep=\parsep}
+\makeatother
+
+\begin{document}
+	\section{Понятие числовых рядов}
+	\begin{equation} \tag{1}
+		\{ u_n \}_{n \geq 1} \subset \mathbb{R} : u_1 + u_2 + ... + u_n + ... \equiv 
+		\sum_{n = 1}^{\infty} u_n \qquad 
+	\end{equation}
+
+	\begin{Definition}
+		Числовой ряд (1) сходится к числу S, называется его суммой, если 
+		\(\exists \llim_{N\to\infty} \lsum_{n=1}^{N} u_n = S \). \\
+		(N-ая) частичная сумма: \(S_N = \lsum_{n=1}^{N} u_n\)
+	\end{Definition}
+	\begin{Definition}
+		Если \(\llim_{N\to\infty}S_N\) не существует, то говорят, что ряд (1) расходится.
+	\end{Definition}
+
+	\begin{Example}
+		%TODO: сделать.
+		в разработке.
+	\end{Example}
+
+	\begin{Theorem}[Критерий Коши] \
+
+		Числовой ряд сходится \(
+			\Leftrightarrow \forall \varepsilon > 0 \ \exists N : 
+			\forall n \geq N, p \in \mathbb{N} : \left|\lsum_{k=N+1}^{N+p} u_k \right| < 
+			\varepsilon 
+		\)
+	\end{Theorem}
+	
+	\begin{proof}
+		Следует из опр и критерия Коши сходимости последвательности.
+		\begin{equation}
+		\begin{split}
+			|S_{N +p} - S_N| =
+			\left| \sum_{n = 1}^{N + p} u_n - \sum_{n = 1}^{N} u_n \right| = 
+			\left|\sum_{n=N+1}^{N+p} u_n \right| < \varepsilon
+			\nonumber
+		\end{split}
+		\end{equation}
+	\end{proof}
+	\begin{Corollary}
+		Если ряд (1) сходится, то \(\llim_{n\to\infty} u_n = 0\)
+	\end{Corollary}
+	\begin{Example} \
+		\begin{itemize} 
+			\item \(1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n} + ... \) 
+				гармонический ряд расходится.
+			\item \(\lsum_{n=1}^{\infty} \frac{1}{sin^2 n * n^3}\) - расходится.
+
+			\item \(\lsum_{n = 1}^{\infty} \frac{1}{n^2} = \frac{\pi^2}{6}\)
+	\end{itemize}
+	\end{Example}
+	\begin{Note}
+		Отбрасывание любого конечного числа слагаемых не влияет на сходимость.
+	\end{Note}
+	\begin{Note}  \
+		\begin{itemize}
+			\item \(\lsum_{n=1}^{\infty} u_n \pm \lsum_{n=1}^{\infty} v_n =
+				\lsum_{n=1}^{\infty} (u_n \pm v_n) \) - 
+				сложение двух сходящихся рядов дают сходящийся ряд.
+			\item \(\alpha(\lsum_{n=1}^{\infty} u_n) = \lsum_{n=1}^{\infty} \alpha u_n\) - умножение ряда на число дает сходящийся ряд.
+		\end{itemize}
+	\end{Note}
+\end{document}

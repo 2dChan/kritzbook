@@ -1,0 +1,67 @@
+\documentclass[12pt, oneside]{book}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}
+
+\usepackage{subfiles}
+
+
+\graphicspath{ {./images/} }
+
+\pgfplotsset{compat=1.18}
+
+\theoremstyle{plain}
+
+\textwidth=170mm
+\textheight=250mm
+\hoffset=-20mm
+\voffset=-30mm
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+\sloppy
+
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Proposition}{Утверждение}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{Corollary}{Следствие}
+\newtheorem{Definition}{Определение}
+\newtheorem{Problem}{Задача}
+\newtheorem{Example}{Пример}
+\newtheorem{Note}{Замечание}
+\renewcommand{\proofname}{Доказательство}
+
+\newcommand{\llim}{\lim\limits}
+\newcommand{\lsum}{\sum\limits}
+
+\DeclareMathOperator*{\lowlim}{\underline{lim}}
+\DeclareMathOperator*{\uplim}{\overline{lim}}
+
+\newlength{\lenun}
+\newlength{\lendu}
+\settowidth{\lenun}{$W$}
+\settoheight{\lendu}{$W$}
+\def\Wo{\makebox{\parbox[c][\lendu][b]{\lenun}{$\stackrel{o}{W}$}}}
+
+\makeatletter
+\renewcommand{\@listI}{%
+\leftmargin=25pt \rightmargin=0pt \labelsep=5pt \labelwidth=20pt \itemindent=0pt
+\listparindent=0pt \topsep=8pt plus 2pt minus 4pt \partopsep=2pt plus 1pt minus
+1pt \parsep=0pt plus 1pt \itemsep=\parsep}
+\makeatother
+
+\begin{document}
+	\tableofcontents
+	\chapter{Теория числовых рядов}
+	\subfile{series/number-series.tex}
+	\subfile{series/series-with-nonegative-terms}
+	\subfile{series/inf-prod}
+\end{document}

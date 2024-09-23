@@ -1,0 +1,162 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\theoremstyle{plain}
+
+\textwidth=170mm
+\textheight=250mm
+\hoffset=-20mm
+\voffset=-30mm
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+\sloppy
+
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Proposition}{Утверждение}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{Corollary}{Следствие}
+\newtheorem{Definition}{Определение}
+\newtheorem{Problem}{Задача}
+\newtheorem{Example}{Пример}
+\newtheorem{Note}{Замечание}
+\renewcommand{\proofname}{Доказательство}
+
+\DeclareMathOperator*{\lowlim}{\underline{lim}}
+\DeclareMathOperator*{\uplim}{\overline{lim}}
+
+\newlength{\lenun}
+\newlength{\lendu}
+\settowidth{\lenun}{$W$}
+\settoheight{\lendu}{$W$}
+\def\Wo{\makebox{\parbox[c][\lendu][b]{\lenun}{$\stackrel{o}{W}$}}}
+
+\makeatletter
+\renewcommand{\@listI}{%
+\leftmargin=25pt \rightmargin=0pt \labelsep=5pt \labelwidth=20pt \itemindent=0pt
+\listparindent=0pt \topsep=8pt plus 2pt minus 4pt \partopsep=2pt plus 1pt minus
+1pt \parsep=0pt plus 1pt \itemsep=\parsep}
+\makeatother
+
+\begin{document}
+	\section{Бесконечные произведения}
+	\[
+		v_{1} * v_{2} * ... *v_{n} * ... = \prod_{n = 1}^{\infty}v_{n} \qquad(1)
+	\]
+	\begin{Definition}
+		Бесконечное произведение (1) - сходится к числу $P \neq 0$, если
+		$P_{n} = \prod\limits_{k = 1}^{n}v_{k} \to P\ ({n\to\infty})$. Если $\exists
+		\lim\limits_{n\to\infty}P_{n} = 0$, то говорят, что бесконечное произведение
+		(1) расходится к 0. \\
+		Если $\nexists \lim\limits_{n\to\infty}P_{n}$, то (1) расходится.\\
+		Заметим что $v_{n} = \frac{P_{n}}{P_{n-1}}$. 
+		Если $\exists P \neq 0 : P_{n} \to P$ то $v_{n} \to 1$
+	\end{Definition}
+
+	\begin{Theorem}
+		{Необходимое условие сходимости} Если бесконечное произведение $(1)$ сходится,
+		то ${v_n}\to 1 (n \to \infty)$.
+	\end{Theorem}
+	\begin{proof}
+		Т.к отбрасывание конечного числ $v_{n}$ не влияет на его сходимость и,
+		начиная с некоторого $n_{0}: v_{n} >= \frac{1}{2}(n \geq n_{0})$, можно считать,
+		что в бесконечных произведениях все $v_{n} > 0$.
+	\end{proof}
+	\begin{Example}
+		\[
+			\sqrt{\frac{1}{2}}*\sqrt{\frac{1}{2} + \frac{1}{2} \sqrt{\frac{1}{2}}}* \sqrt{\frac{1}{2}
+			+ \frac{1}{2}\sqrt{\frac{1}{2} + \frac{1}{2}\sqrt{\frac{1}{2}}}}* \sqrt{\frac{1}{2}
+			+ \frac{1}{2} * (...)}* ... = \frac{2}{\pi}
+		\]
+		\[
+			sinx = 2sin\frac{x}{2}cos\frac{x}{2}= 4 sin\frac{x}{4}cos\frac{x}{4}cos\frac{x}{2}
+			= ... = 2sin\frac{x}{2^{n}}cos\frac{x}{2^{n}}cos\frac{x}{2^{n-1}}*...*cos\frac{x}{2}
+		\]
+		$\prod\limits_{k = 1}^{\infty}cos\frac{x}{2^{k}}\Rightarrow$ частичное произведение
+		$P_{n} = \frac{sinx}{2^{n}sin\frac{x}{2^n}}= \frac{sinx}{x}* \frac{\frac{x}{2^{n}}}{sin\frac{x}{2^n}}
+		\to \frac{sinx}{x}$
+
+		$\prod\limits_{k = 1}^{\infty}cos\frac{x}{2^{k}}= \frac{sinx}{x}\Rightarrow \prod
+		\limits_{k = 1}^{\infty}cos\frac{x}{2^{k+1}}= \frac{\pi}{2}\Rightarrow$
+		формула Виета
+	\end{Example}
+	\begin{Example}
+		Валиис
+		\begin{equation}
+		\begin{split}
+			I_{n} 
+			&= \int_{0}^{\frac{\pi}{2}}sin^{n}xdx = 
+			  \int_{0}^{\frac{\pi}{2}}sin^{n-1}x d(-cosx) = -sin^{n-1}{x}*cosx +\\ 
+			&+ \int_{0}^{\frac{\pi}{2}}cosx * (n-1)sin^{n-2}x\cos{x}dx =
+			  (n - 1) \int_{0}^{\frac{\pi}{2}}(1-sin^{2}x)*sin^{n-2}xdx =\\
+			&= (n - 1)I_{n-2}-(n -1)I_{n} \Rightarrow I_{n} = \frac{n - 1}{n}I_{n-2}\\
+		  I_{2k} 
+      &= \frac{2k-1}{2k}I_{2k-2}=\frac{(2k-1)(2k-3)}{2k(2k-2)}I_{2k-4} = 
+			  \frac{(2k- 1)(2k - 3)...1}{2k(2k-2)...2}I_{0} \\
+			I_{2k + 1}
+		  &= \frac{2k}{2k+1}I_{2k-1}=\frac{(2k)(2k-2)}{(2k+1)(2k-1)}I_{2k-3} = \frac{2k(2k - 2)...2}{(2k+1)(2k-1)...3}I_{1} \\
+			\frac{I_{2k}}{I_{2k + 1}}
+			&= \frac{(2k + 1)(2k - 1)^{2}(2k - 3)^{2}*...*3^{2}}{(2k)^{2}(2k-2)^{2}*...*2^{2}} * 
+			  \frac{\pi}{2}\Rightarrow \frac{\pi}{2} = \frac{(2k + 1)(2k - 1)^{2}*...*3^{2}}{(2k)^{2}(2k-2)^{2}*...*2^{2}} * \frac{I_{2k}}{I_{2k + 1}}\nonumber
+		\end{split}
+		\end{equation}
+
+		Докажем, что $\frac{I_{2k}}{I_{2k+1}}\to 1 (k \to \infty)$
+		\[
+			1 < \frac{I_{2k}}{I_{2k+1}}< \frac{I_{2k-1}}{I_{2k + 1}}= \frac{2k + 1}{2k}
+			\to 1
+		\]
+	\end{Example}
+	Так как $\ln{P_n}= \ln{v_1}+ ... + \ln{v_n}\\
+	\sum\limits_{n = 1}^{\infty}ln(v_{n})$
+
+	\begin{Theorem}
+		Пусть $v_{n} > 0 \forall n$ Тогда бесконечное произведение(1) сходится
+		$\Leftrightarrow$ сходится ряд $\sum\limits_{n = 1}^{\infty}\ln{v_n}$
+	\end{Theorem}
+
+	\begin{Theorem}
+		Пусть $v_{n} \geq 1 \forall n$ Тогда бесконечное произведение(1) сходится
+		$\Leftrightarrow$ сходится ряд $\sum\limits_{n = 1}^{\infty}(v_{n} - 1)$
+	\end{Theorem}
+	\begin{proof}
+		$\Rightarrow$ {т.17} $v_{n} \to 1$ Для ряда $\sum\limits_{n = 1}{\infty}\ln{v_n}$
+		из неотриц. слагаемых$(v_{n} \geq 1)$ выполнено $\lim\limits_{n\to\infty}\frac{\ln{v_n}}{v_{n}-1}
+		= 1$ По пр-ку сравнения сход. ряд. $\sum\limits_{n=1}{\infty}(v_{n} - 1)$ \\
+		$\Leftarrow$ Если ряд $\sum\limits_{n = 1}^{\infty}(v_{n} - 1)$ сх.
+		$\Rightarrow v_{n} \to 1$ и
+		$\lim\limits_{n \to \infty}\frac{\ln{v_n}}{v_{n} - 1}= 1 \Rightarrow$ по
+		признаку сравнения $\Rightarrow$ сходится ряд
+		$\sum\limits_{n = 1}^{\infty}\ln(v_{n})$
+	\end{proof}
+	\begin{Theorem}
+		Пусть $v_{n} > 0 \forall n$ Положим $v_{n} = 1 + u_{n} \forall n$
+		\begin{enumerate}
+			\item Пусть ряд $\sum\limits_{n=1}^{\infty}u_{n}$ сходится. Тогда
+				бесконечное произведение сходится $\Leftrightarrow$ ряд
+				$\sum\limits_{n = 1}^{\infty}u_{n}^{2}$ сзрдится.
+
+			\item Пусть ряд $\sum\limits_{n = 1}^{\infty}u^{2}_{n}$ сходится. Тогда
+				бесконечное произведение (1) сходится $\Leftrightarrow$ ряд
+				$\sum\limits_{n = 1}^{\infty}u_{n}$ сходится.
+		\end{enumerate}
+	\end{Theorem}
+	\begin{proof}
+		В условиях т. 20: $u_{n} \to 0, n \to \infty \ \sum\limits_{n = 1}^{\infty}\ln
+		{1 + u_n}$
+		\[
+			\ln{1 + u_n}= u_{n} - \frac{u_{n}}{2}+ o(u^{2}_{n}), n\to\infty
+		\]
+	\end{proof}
+\end{document}
