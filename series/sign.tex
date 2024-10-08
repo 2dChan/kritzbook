@@ -1,16 +1,10 @@
-\documentclass[12pt, oneside]{book}
+\documentclass[12pt, oneside]{article}
 \usepackage[T2A, T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english, russian]{babel}
 \usepackage{amssymb, amsthm, amsmath}
 \usepackage[pdftex]{graphicx}
 \usepackage{pgfplots}
-
-\usepackage{subfiles}
-
-
-\graphicspath{ {./images/} }
-
 \pgfplotsset{compat=1.18}
 
 \theoremstyle{plain}
@@ -37,11 +31,7 @@
 \newtheorem{Problem}{Задача}
 \newtheorem{Example}{Пример}
 \newtheorem{Note}{Замечание}
-\newtheorem{T}{Обозначение}
 \renewcommand{\proofname}{Доказательство}
-
-\newcommand{\llim}{\lim\limits}
-\newcommand{\lsum}{\sum\limits}
 
 \DeclareMathOperator*{\lowlim}{\underline{lim}}
 \DeclareMathOperator*{\uplim}{\overline{lim}}
@@ -60,14 +50,10 @@
 \makeatother
 
 \begin{document}
-	\tableofcontents
-	\chapter{Теория числовых рядов}
-	\subfile{series/number-series.tex}
-	\subfile{series/series-with-nonegative-terms}
-	\subfile{series/inf-prod}
-	%\subfile{series/ex.tex}
-	\chapter{Функциональные последоавтельности и ряды.}
-	\subfile{series/function-series.tex}
-	\subfile{series/sign.tex}
-
+	\section{Признак равномерной сходимости}
+	\subsection{Признак вейерштрасса}
+	\begin{Theorem}
+		Пусть \(\lsum_{n=1}^{\infty} u_n(x)\) определен на \(\mathbb{X}\) и известно,
+		что \(|u_n(x)| \leq b_N \forall n\)
+	\end{Theorem}
 \end{document}

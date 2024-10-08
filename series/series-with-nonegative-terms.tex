@@ -112,13 +112,25 @@
 		\equiv L > 0 \Rightarrow \) они сходятся и расходятся одновременно.
 	\end{Theorem}
 	\begin{proof}
-		% TODO:
-		В разработке.
+		\begin{equation} \nonumber
+		\begin{split}
+				& \forall \varepsilon > 0 \ \exists N: \forall k \geq N: 
+				\left|\frac{p_k}{p'_k} - L \right| < \varepsilon \Leftrightarrow L -
+				\varepsilon < \frac{p_k}{p'_k} < L + \varepsilon \\
+				& ! \varepsilon = \frac{L}{2} \ \exists N: \forall k \geq N: \
+				\frac{L}{2} < \frac{p_k}{p'_k} < \frac{3L}{2} \Leftrightarrow 
+				\underline{\frac{L}{2}p'_k < p_k} = \\
+				& = \underline{p_k < \frac{3L}{2} p'_k} \quad 
+				\text{(Если одно сходится/расходится, то и другое.)} \\
+				& p_k = \frac{1}{k}, p'_k = \frac{1}{k^2}
+		\end{split}	
+		\end{equation}
 	\end{proof}
 
-	\begin{Theorem}[ещё один признак сравнения]
-		% TODO:
-		В разработке.
+	\begin{Theorem}[ещё один признак сравнения] \ \\ 
+		Пусть \(\lsum_{k=1}^{\infty}p_k, \lsum_{k=1}^{\infty}p'_k, \qquad
+		p_k, p'_k \geq 0 \text{и} \frac{p_{k+1}}{p_k} < \frac{p'_{k+1}}{p'_k} 
+		\forall k \geq k_0\) Тогдав выполнены условия теоремы 2.
 	\end{Theorem}
 
 	\subsection{Признаки Даламбера и Коши}

@@ -1,0 +1,151 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\theoremstyle{plain}
+
+\textwidth=170mm
+\textheight=250mm
+\hoffset=-20mm
+\voffset=-30mm
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+\sloppy
+
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Proposition}{Утверждение}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{Corollary}{Следствие}
+\newtheorem{Definition}{Определение}
+\newtheorem{Problem}{Задача}
+\newtheorem{Example}{Пример}
+\newtheorem{Note}{Замечание}
+\newtheorem{T}{Обозначение}
+\renewcommand{\proofname}{Доказательство}
+
+\DeclareMathOperator*{\lowlim}{\underline{lim}}
+\DeclareMathOperator*{\uplim}{\overline{lim}}
+
+\newlength{\lenun}
+\newlength{\lendu}
+\settowidth{\lenun}{$W$}
+\settoheight{\lendu}{$W$}
+\def\Wo{\makebox{\parbox[c][\lendu][b]{\lenun}{$\stackrel{o}{W}$}}}
+
+\makeatletter
+\renewcommand{\@listI}{%
+\leftmargin=25pt \rightmargin=0pt \labelsep=5pt \labelwidth=20pt \itemindent=0pt
+\listparindent=0pt \topsep=8pt plus 2pt minus 4pt \partopsep=2pt plus 1pt minus
+1pt \parsep=0pt plus 1pt \itemsep=\parsep}
+\makeatother
+
+\begin{document}
+\begin{minipage}{0.25\textwidth}
+	\begin{equation}\nonumber
+	\begin{split}
+		& \{f_n{x}\}_{n=1}^\infty \\
+		& \sum_{n=1}^\infty u_n(x)
+	\end{split}
+	\end{equation}
+\end{minipage}
+\hfill
+\begin{minipage}{0.65\textwidth}
+	Будем предпологать, что все \(f_n(x)\) / все \(u_n(x)\)
+	являются функциями, определенными на некотором общем множестве \(X C \mathbb{R}\)
+\end{minipage}
+\section{Различные виды схоимости}
+Пусть \(x_0 \in \mathbb{X}: \{f_n(x_0)\} \to_{n\to\infty} f(x_0)\) - Поточечная
+сходимость.
+
+\begin{equation}\nonumber
+	\sum_{n=1}^{\infty} u_n(x_0)\ \text{сходится к}\ S(x_0) \text{- Поточечная сходимость.}
+\end{equation}
+\begin{Example} 
+	В разработке.
+\end{Example}
+\begin{Example}
+	В разработке.
+\end{Example}
+
+\begin{Definition}
+	\(\{f_n(x)\}\) равномерно на \(X\) сходится к \(f(x)\), если
+	\[
+		\forall \varepsilon > 0 \exists N : \forall n \geq N \forall x \in X: 
+		\left|f_n(x) - f(x)\right| < \varepsilon
+	\]
+\end{Definition}
+\begin{Definition}
+	\(\sum_{n=1}^{\infty}u_n()x\) называется равномерно сходящимся на X, если
+	посл-ть \(\{S_n(x)\}\) его част. сумм. равномерно сходятся на X.
+\end{Definition}
+\begin{Note}
+	Равномерная сходимость на X подразумевает сходимость в \(\forall\) точке
+	\(x_0 \in X\) Из поточечной сходимости, вообще говоря, не следует равномерная
+	сходимость.
+	Из примера 2: \(\{x^n\}\to 0 \forall x \in (-1, 1)\)
+\end{Note}
+\begin{proof}
+	Докажем, что на \((-1, 1)\) нет равномерной сходимости:
+	\begin{equation} \nonumber
+	\begin{split}
+	  \exists \varepsilon \geq 0 \forall N \ & \exists n \geq N \exists x \in (-1, 1): |x^n| \geq 
+		\varepsilon\\
+																		& n = N \quad x = 1 - \frac{1}{N} \Rightarrow 
+																		(1 - \frac{1}{N}) \to \frac{1}{e} \Rightarrow
+																		\text{При} N \geq N_0 : \left(1 - \frac{1}{N}
+																		\right)^N \geq \frac{1}{3}
+	\end{split}
+	\end{equation}
+\end{proof}
+\begin{Note}
+	Из равномерное схожимости на X следует равномерная сходимость на \(\forall\)
+	подмножестве \(X_1 c X\)
+\end{Note}
+\begin{Note}
+	Равномерная сходимость \(\{f_n(x)\}\) на \(X \text{к} f(x)\) равносильная
+	\[
+		\exists lim_{n\to\infty} \sup_{x \in X} |f_n(x) - f(x)| = 0
+	\]
+\end{Note}
+
+\begin{T}
+	\begin{equation} \nonumber
+	\begin{split}
+		\{f_n(x)\} &\to^{\to^X} f(x) \\
+		\sum_{n=1}^{\infty} u_n(x) &\to^{\to^X} S(x)
+	\end{split}
+	\end{equation}
+\end{T}
+
+\begin{Theorem}[Критерий Коши] \
+	\begin{equation} \nonumber
+		\begin{split}
+			& I. \{f_n(x)\} \to^{\to} \text{на} X \Leftrightarrow \forall \varepsilon > 0
+			\exists N \forall n \geq N \forall p \in \mathbb{N} \forall x \in \mathbb{X}:
+			\left|f_{n+p}(x) -f_n(x)\right| < \varepsilon \\
+			& II. \sum_{n=1}^{\infty} u_n(x) \to^{\to} \text{на} X \Leftrightarrow \forall \varepsilon > 0
+			\exists N \forall n \geq N \forall p \in \mathbb{N} \forall x \in \mathbb{X}:
+			\left|\sum_{n=1}^{\infty} u_n(x) \right| < \varepsilon
+		\end{split}
+	\end{equation}
+\end{Theorem}
+
+\begin{proof}
+	В разработке.
+\end{proof}
+\begin{Corollary}
+	В разработке.
+\end{Corollary}
+
+\end{document}

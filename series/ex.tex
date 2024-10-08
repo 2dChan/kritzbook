@@ -1,0 +1,121 @@
+\documentclass[12pt, oneside]{article}
+\usepackage[T2A, T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english, russian]{babel}
+\usepackage{amssymb, amsthm, amsmath}
+\usepackage[pdftex]{graphicx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
+\theoremstyle{plain}
+
+\textwidth=170mm
+\textheight=250mm
+\hoffset=-20mm
+\voffset=-30mm
+
+\parindent=0.5cm
+\parskip=0.1cm
+
+\tolerance=400
+
+\binoppenalty=10000
+\relpenalty=10000
+\sloppy
+
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Proposition}{Утверждение}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{Corollary}{Следствие}
+\newtheorem{Definition}{Определение}
+\newtheorem{Problem}{Задача}
+\newtheorem{Example}{Пример}
+\newtheorem{Note}{Замечание}
+\renewcommand{\proofname}{Доказательство}
+
+\DeclareMathOperator*{\lowlim}{\underline{lim}}
+\DeclareMathOperator*{\uplim}{\overline{lim}}
+
+\newlength{\lenun}
+\newlength{\lendu}
+\settowidth{\lenun}{$W$}
+\settoheight{\lendu}{$W$}
+\def\Wo{\makebox{\parbox[c][\lendu][b]{\lenun}{$\stackrel{o}{W}$}}}
+
+\makeatletter
+\renewcommand{\@listI}{%
+\leftmargin=25pt \rightmargin=0pt \labelsep=5pt \labelwidth=20pt \itemindent=0pt
+\listparindent=0pt \topsep=8pt plus 2pt minus 4pt \partopsep=2pt plus 1pt minus
+1pt \parsep=0pt plus 1pt \itemsep=\parsep}
+\makeatother
+
+\begin{document}
+	\begin{Theorem}
+		Если хотя бы один из 4 рядов сходится абсолютно, то абсолютно сходятся и все 
+		остальные ряды, причем к той же сумме.
+	
+	\begin{equation}
+	\begin{split} \nonumber
+		& \sum_{m,n=1}^{\infty} a_{mn} ~ S_1 \\
+		& \sum_{m = 1}^{\infty}\sum_{n=1}^{\infty} a_{mn} ~ S_2 \\
+		& \sum_{n = 1}^{\infty}\sum_{m=1}^{\infty} a_{mn} ~ S_3 \\
+		& \sum_{r=1}^{\infty} a'_r ~ S_4
+	\end{split}
+	\end{equation}
+	\end{Theorem}
+
+	\begin{proof}
+		1. \(a_mn \geq 0 \forall m, n\) \\
+		Сходимость 1го \(\Rightarrow\) Сходимость 2го и \(S_2 = S_1\) \\
+		Воспользуемся теормой 22: т.к все строчные ряды\\
+		\(\lsum_{n=1}^{\infty} a_mn\) таковы, что \(\lsum_{n=1}^{N} a_mn \leq 
+		\lsum_{k=1}^{m}\lsum_{n=1}^{N}a_mn \leq const\), а следовательно, они 
+		сходятся. Таким образом 2й ряд сходится к \(S_1\).\\
+		Сходимость 2го ряда \(\Rightarrow\) Сходимость 1го рода и \(S_1 = S_2\)
+		\begin{equation} \nonumber
+			\sum_{m=1}^{M}\left(\sum_{n=1}^{N} a_mn\right) \leq
+			\sum_{m=1}^{M}\sum_{n=1}^{\infty} a_mn \leq S_2
+			\Rightarrow \textbf{По теореме 22} \Rightarrow S_2 = S_1
+		\end{equation}
+		Сходимость 1го \(\Rightarrow\) Сходимость 4го ряда и \(S_4 = S-1\)
+		\begin{equation} \nonumber
+			\sum_{r=1}^{R} a'_r
+		\end{equation}
+		Среди \(a'_1, ..., a'_2\) найдется такие M,N, которые являются max номера 
+		строки и номера столбца, где они расположены в \(\{a_mn\}\)
+
+		\begin{equation} \nonumber
+		\begin{split}
+			& \sum_{r=1}^{R} a'_r \leq \sum_{m=1}^{M}\sum_{n=1}^{N} a_mn \leq const
+			\Rightarrow \text{4й ряд сходится к} S_4 \\
+			& \text{Из} \leq \Rightarrow S_4 \leq S_1
+		\end{split}
+		\end{equation}
+
+		Докажем, что \(S_1 \leq S_4\)
+		\begin{equation}\nonumber
+			\sum_{m=1}^{M}\sum_{n=1}^{N} a_mn \leq \sum_{r=1}^{R} a'_r \leq S_4
+		\end{equation}
+		\(\exists\)
+		Дописать.
+	\end{proof}
+
+	2. \(a_mn \in \mathbb{R}: \)
+	%\begin{equation} \nonumber
+	%\begin{split}
+	%	&	p_mn = \frac{a_mn + |a_mn|}{2}, q_mn = \frac{-a_mn + |a_mn|}{2} \\
+	%	& 0 \leq p_mn \leq |a_mn| \qquad p_mn -q_mn = a_mn \\
+	%	& 0 \leq q_mn \leq |a_mn|
+	%\end{split}
+	%\end{equation}
+	Докажем, например абсолюьную сходимость 2го ряда \(\Rightarrow\) абсолютная
+	сходимость 1го и \(S_1 = S_2\)\\
+	%\begin{equation}
+	%	\sum_{m=1}^{\infty} \Rightarrow 
+	%	\left\{ \begin{aligned}
+	%			f(x) &=
+	%	\end{aligned} \right.
+	%\end{equation}
+
+
+\end{document}
